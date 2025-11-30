@@ -1,6 +1,35 @@
+import { useQuery } from "@tanstack/react-query"
+import Card from './Card'
+
 const DailyForecast = () => {
+    const { data } = useQuery({
+        queryKey: ["weather"],
+        queryFn: () => getWeather({ lat: 50, lon: 50 })
+    })
+
     return (
-        <div>DailyForecast</div>
+        <Card title="Daily Forecast" className="pt-4 flex flex-col gap-2">
+            {
+                data?.daily.map((day, index) =>
+                    <div key={index} className="flex justify-between items-center">
+                        <span className="w-6">
+                            {
+                                new Intl.DateTimeFormat("en-US",
+                                    {
+                                        weekday: "short",
+                                        timeZone: data.timezone,
+                                    }).format(new Date(day.dt * 1000))
+                            }
+                        </span>
+                        <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} />
+                        <span>{day.temp.day}°F</span>
+                        <span className="text-zinc-700">{day.temp.min}°F</span>
+                        <span className="text-zinc-700">{day.temp.max}°F</span>
+
+                    </div>
+                )
+            }
+        </Card>
     )
 }
 
