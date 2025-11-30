@@ -12,7 +12,7 @@ const App = () => {
   })
 
   return (
-    <main>
+    <main className="flex flex-col gap-8 w-full">
       <CurrentWeather />
       <HourlyForecast />
       <DailyForecast />
