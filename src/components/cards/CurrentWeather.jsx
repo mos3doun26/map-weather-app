@@ -1,10 +1,13 @@
 import Card from "./Card"
-import { useQuery } from "@tanstack/react-query"
-const CurrentWeather = () => {
-    const { data } = useQuery({
-        queryKey: ["weather"],
-        queryFn: () => getWeather({ lat: 50, lon: 50 })
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { getWeather } from "../../../api"
+
+const CurrentWeather = ({ coords }) => {
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather", coords.lat, coords.lon],
+        queryFn: () => getWeather(coords)
     })
+
     return (
         <Card title="Current Weather" className="flex flex-col gap-4 items-center justify-center overflow-hidden">
             <span className="text-5xl font-medium">{Math.round(data?.current.temp)}°F</span>

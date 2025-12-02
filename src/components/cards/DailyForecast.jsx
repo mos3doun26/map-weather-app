@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import Card from './Card'
+import { getWeather } from "../../../api"
 
-const DailyForecast = () => {
-    const { data } = useQuery({
-        queryKey: ["weather"],
-        queryFn: () => getWeather({ lat: 50, lon: 50 })
+const DailyForecast = ({ coords }) => {
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather", coords.lat, coords.lon],
+        queryFn: () => getWeather(coords)
     })
 
     return (

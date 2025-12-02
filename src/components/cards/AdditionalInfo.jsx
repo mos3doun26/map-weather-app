@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import Card from "./Card"
 import Cloud from "/src/assets/cloud.svg?react"
 import Sunrise from "/src/assets/sunrise.svg?react"
@@ -8,11 +8,12 @@ import Uv from "/src/assets/uv.svg?react"
 import Pressure from "/src/assets/pressure.svg?react"
 import Humidity from "/src/assets/humidity.svg?react"
 import ArrowUp from "/src/assets/arrow-up.svg?react"
+import { getWeather } from "../../../api"
 
-const AdditionalInfo = () => {
-    const { data } = useQuery({
-        queryKey: ["weather"],
-        queryFn: () => getWeather({ lat: 50, lon: 50 })
+const AdditionalInfo = ({ coords }) => {
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather", coords.lat, coords.lon],
+        queryFn: () => getWeather(coords)
     })
 
     const FormatedComponent = ({ value, number }) => {
@@ -23,7 +24,7 @@ const AdditionalInfo = () => {
                     minute: "2-digit",
                     hour12: true,
                     timeZone: data.timezone,
-                }).format(new Date(data.current.dt * 1000))
+                }).format(new Date(data.current[value] * 1000))
                 : "N/A"
         }
 
