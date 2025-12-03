@@ -24,11 +24,8 @@ function ClickMap({ handleMapClick }) {
     const map = useMap()
     map.on("click", (e) => {
         const { lat, lng } = e.latlng
-
-        handleMapClick({
-            lat: lat,
-            lon: lng
-        })
+        map.panTo([lat, lng])
+        handleMapClick({ lat: lat, lon: lng })
     })
     return null
 }
