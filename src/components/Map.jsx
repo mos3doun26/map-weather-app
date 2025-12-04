@@ -1,7 +1,9 @@
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-
+import { useEffect } from 'react'
+import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk'
 const API_KEY = import.meta.env.VITE_API_KEY
+const VITE_MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY
 
 
 const Map = ({ coords, handleMapClick, mapType }) => {
@@ -14,11 +16,9 @@ const Map = ({ coords, handleMapClick, mapType }) => {
             style={{ width: "100wv", height: "500px" }}
         >
             <ClickMap handleMapClick={handleMapClick} coords={coords} />
+            <MapTileLayer />
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <TileLayer
+                opacity={0.7}
                 url={`https://tile.openweathermap.org/map/${mapType}/{z}/{x}/{y}.png?appid=${API_KEY}`}
             />
             <Marker position={[lat, lon]}>
@@ -36,6 +36,21 @@ function ClickMap({ handleMapClick, coords }) {
         handleMapClick({ lat: lat, lon: lng })
     })
     return null
+}
+
+
+function MapTileLayer() {
+    const map = useMap()
+
+    useEffect(() => {
+        const tileLayer = new MaptilerLayer({
+            style: 'basic-dark',
+            apiKey: VITE_MAPTILER_API_KEY
+        })
+
+        tileLayer.addTo(map)
+        return () => { map.removeLayer(tileLayer) }
+    }, [map])
 }
 
 export default Map
