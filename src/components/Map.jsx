@@ -1,7 +1,10 @@
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const Map = ({ coords, handleMapClick }) => {
+const API_KEY = import.meta.env.VITE_API_KEY
+
+
+const Map = ({ coords, handleMapClick, mapType }) => {
     const { lat, lon } = coords
     return (
         <MapContainer
@@ -14,6 +17,9 @@ const Map = ({ coords, handleMapClick }) => {
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <TileLayer
+                url={`https://tile.openweathermap.org/map/${mapType}/{z}/{x}/{y}.png?appid=${API_KEY}`}
             />
             <Marker position={[lat, lon]}>
             </Marker>

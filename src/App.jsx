@@ -7,10 +7,12 @@ import Map from "./components/Map"
 import { useState } from "react"
 import LocationDropDown from "./components/dropdowns/LocationDropDown"
 import { useSuspenseQuery } from "@tanstack/react-query"
+import MapTypeDropDown from "./components/dropdowns/MapTypeDropDown"
 
 const App = () => {
   const [coordinates, setCoords] = useState({ lat: 31, lon: 31 })
   const [location, setLocation] = useState('custom')
+  const [mapType, setMapType] = useState('clouds_new')
 
   const { data } = useSuspenseQuery({
     queryKey: ["location", location],
@@ -26,8 +28,17 @@ const App = () => {
 
   return (
     <main className="flex flex-col gap-8 w-full">
-      <LocationDropDown location={location} setLocation={setLocation} />
-      <Map coords={coords} handleMapClick={handleMapClick} />
+      <div className="flex justify-between">
+        <div className="flex gap-4 items-center">
+          <span className="text-xl font-medium">Location</span>
+          <LocationDropDown location={location} setLocation={setLocation} />
+        </div>
+        <div className="flex gap-4 items-center">
+          <span className="text-xl font-medium">Map Type</span>
+          <MapTypeDropDown mapType={mapType} setMapType={setMapType} />
+        </div>
+      </div>
+      <Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} />
       <CurrentWeather coords={coords} />
       <HourlyForecast coords={coords} />
       <DailyForecast coords={coords} />
