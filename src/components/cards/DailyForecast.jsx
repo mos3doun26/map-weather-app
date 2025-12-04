@@ -23,9 +23,9 @@ const DailyForecast = ({ coords }) => {
                             }
                         </span>
                         <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} />
-                        <span>{day.temp.day}°F</span>
-                        <span className="text-zinc-700">{day.temp.min}°F</span>
-                        <span className="text-zinc-700">{day.temp.max}°F</span>
+                        <span>{Math.round(day.temp.day)}°F</span>
+                        <span className="text-zinc-700">{Math.round(day.temp.min)}°F</span>
+                        <span className="text-zinc-700">{Math.round(day.temp.max)}°F</span>
 
                     </div>
                 )

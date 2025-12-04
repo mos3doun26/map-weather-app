@@ -5,3 +5,9 @@ export async function getWeather({ lat, lon }) {
     const data = await res.json()
     return data
 }
+
+export async function getGeoCode(cityName) {
+    const res = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`)
+    const data = await res.json()
+    return data
+}
