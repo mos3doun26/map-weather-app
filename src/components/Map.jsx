@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useEffect } from 'react'
 import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk'
+import MapLegend from './MapLegend'
 const API_KEY = import.meta.env.VITE_API_KEY
 const VITE_MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY
 
@@ -15,6 +16,7 @@ const Map = ({ coords, handleMapClick, mapType }) => {
             zoom={5}
             style={{ width: "100wv", height: "500px" }}
         >
+            <MapLegend mapType={mapType} />
             <ClickMap handleMapClick={handleMapClick} coords={coords} />
             <MapTileLayer />
             <TileLayer
