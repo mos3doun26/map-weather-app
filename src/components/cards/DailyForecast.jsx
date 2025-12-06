@@ -22,7 +22,7 @@ const DailyForecast = ({ coords }) => {
                                     }).format(new Date(day.dt * 1000))
                             }
                         </span>
-                        <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} />
+                        <img className="size-12" src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} />
                         <span>{Math.round(day.temp.day)}°F</span>
                         <span className="text-zinc-700">{Math.round(day.temp.min)}°F</span>
                         <span className="text-zinc-700">{Math.round(day.temp.max)}°F</span>
