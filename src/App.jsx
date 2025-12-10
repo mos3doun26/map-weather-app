@@ -12,6 +12,7 @@ import CurrentSkeleton from "./components/skeletons/CurrentSkeleton"
 import HourlySkeleton from "./components/skeletons/HourlySkeleton"
 import DailySkeleton from "./components/skeletons/DailySkeleton"
 import AddtionalSkeleton from "./components/skeletons/AddtionalSkeleton"
+import SidePanel from "./components/SidePanel"
 
 const App = () => {
   const [coordinates, setCoords] = useState({ lat: 31, lon: 31 })
@@ -55,6 +56,7 @@ const App = () => {
       <Suspense fallback={<AddtionalSkeleton />}>
         <AdditionalInfo coords={coords} />
       </Suspense>
+      <SidePanel coords={coords} />
     </main>
   )
 }
