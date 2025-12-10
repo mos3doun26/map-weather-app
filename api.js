@@ -11,3 +11,9 @@ export async function getGeoCode(cityName) {
     const data = await res.json()
     return data
 }
+
+export async function getAirPollution({ lat, lon }) {
+    const res = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`)
+    const data = await res.json()
+    return data
+}
