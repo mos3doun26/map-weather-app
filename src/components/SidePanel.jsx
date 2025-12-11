@@ -3,6 +3,8 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import { Slider } from "./ui/slider"
 import Chevron from "/src/assets/chevron.svg?react"
 import clsx from "clsx"
+import Info from "/src/assets/information.svg?react"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 const SidePanel = (props) => {
     const { coords, isOpenedSidePanel, setSidePanel } = props
@@ -32,7 +34,20 @@ function AirPollution({ coords }) {
         <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-medium">Air Pollution</h2>
             <span className="text-3xl font-bold">{data?.list[0].main.aqi}</span>
-            <span className="text-2xl font-bold">AQI</span>
+            <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold">AQI</span>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Info className="size-4 invert" />
+                    </TooltipTrigger>
+                    <TooltipContent className="z-1500">
+                        <p className="max-w-xs">
+                            Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good,2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
+                        </p>
+                    </TooltipContent>
+                </Tooltip>
+            </div>
+
             {
                 Object.entries(data?.list[0]?.components).map(([key, value]) => {
                     const pollutant = pollutantLevels[key]
@@ -62,7 +77,17 @@ function AirPollution({ coords }) {
                     return (
                         <div className="rounded-lg bg-linear-to-tr from-sidebar to-sidebar-accent p-2 flex flex-col gap-2">
                             <div className="flex items-center justify-between">
-                                <span className="capitalize font-medium text-lg">{key}</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="capitalize font-medium text-lg">{key}</span>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Info className="size-4 invert" />
+                                        </TooltipTrigger>
+                                        <TooltipContent className="z-1500">
+                                            <p className="max-w-xs">{pollutantNames[key]}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </div>
                                 <span className="font-medium text-lg">{value}</span>
                             </div>
                             <Slider value={[value]} max={maxValue()} disabled />
@@ -158,5 +183,17 @@ const levelClasses = {
     Poor: "bg-red-600 text-white",
     "Very Poor": "bg-purple-600 text-white"
 }
+
+const pollutantNames = {
+    co: "Carbon Monoxide",
+    no: "Nitric Oxide",
+    no2: "Nitrogen Dioxide",
+    o3: "Ozone",
+    so2: "Sulfur Dioxide",
+    pm2_5: "Fine Particulate Matter (PM2.5)",
+    pm10: "Coarse Particulate Matter (PM10)",
+    nh3: "Ammonia"
+}
+
 
 export default SidePanel
