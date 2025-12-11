@@ -5,6 +5,8 @@ import Chevron from "/src/assets/chevron.svg?react"
 import clsx from "clsx"
 import Info from "/src/assets/information.svg?react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { Suspense } from "react"
+import SidePanelSkeleton from "./skeletons/SidePanelSkeleton"
 
 const SidePanel = (props) => {
     const { coords, isOpenedSidePanel, setSidePanel } = props
@@ -17,7 +19,9 @@ const SidePanel = (props) => {
             )}
         >
             <Chevron className="size-8 -ml-2 invert" onClick={() => setSidePanel(false)} />
-            <AirPollution {...props} />
+            <Suspense fallback={<SidePanelSkeleton />}>
+                <AirPollution {...props} />
+            </Suspense>
         </div>
 
     )
@@ -75,7 +79,7 @@ function AirPollution({ coords }) {
                     })
 
                     return (
-                        <div className="rounded-lg bg-linear-to-tr from-sidebar to-sidebar-accent p-2 flex flex-col gap-2">
+                        <div key={key} className="rounded-lg bg-linear-to-tr from-sidebar to-sidebar-accent p-2 flex flex-col gap-2">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <span className="capitalize font-medium text-lg">{key}</span>
