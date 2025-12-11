@@ -1,10 +1,20 @@
 import { getAirPollution } from "../../api"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { Slider } from "./ui/slider"
+import Chevron from "/src/assets/chevron.svg?react"
+import clsx from "clsx"
 
 const SidePanel = (props) => {
+    const { coords, isOpenedSidePanel, setSidePanel } = props
+
     return (
-        <div className="h-screen w-80 fixed top-0 right-0 z-1001 bg-sidebar overflow-y-scroll p-4">
+        <div
+            className={clsx(
+                `h-screen w-80 fixed top-0 right-0 z-1001 bg-sidebar overflow-y-scroll p-4 transition-transform duration-300`,
+                isOpenedSidePanel ? "translate-x-0" : "translate-x-full"
+            )}
+        >
+            <Chevron className="size-8 -ml-2 invert" onClick={() => setSidePanel(false)} />
             <AirPollution {...props} />
         </div>
 

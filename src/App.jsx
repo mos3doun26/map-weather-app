@@ -13,11 +13,14 @@ import HourlySkeleton from "./components/skeletons/HourlySkeleton"
 import DailySkeleton from "./components/skeletons/DailySkeleton"
 import AddtionalSkeleton from "./components/skeletons/AddtionalSkeleton"
 import SidePanel from "./components/SidePanel"
+import Menu from "/src/assets/menu.svg?react"
+
 
 const App = () => {
   const [coordinates, setCoords] = useState({ lat: 31, lon: 31 })
   const [location, setLocation] = useState('custom')
   const [mapType, setMapType] = useState('clouds_new')
+  const [isOpenedSidePanel, setSidePanel] = useState(true)
 
   const { data } = useSuspenseQuery({
     queryKey: ["location", location],
@@ -33,7 +36,7 @@ const App = () => {
 
   return (
     <main className="flex flex-col gap-8 w-full">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex gap-4 items-center">
           <span className="text-xl font-medium">Location</span>
           <LocationDropDown location={location} setLocation={setLocation} />
@@ -42,6 +45,7 @@ const App = () => {
           <span className="text-xl font-medium">Map Type</span>
           <MapTypeDropDown mapType={mapType} setMapType={setMapType} />
         </div>
+        <Menu className="size-8 invert" onClick={() => setSidePanel(true)} />
       </div>
       <Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} />
       <Suspense fallback={<CurrentSkeleton />}>
@@ -56,7 +60,7 @@ const App = () => {
       <Suspense fallback={<AddtionalSkeleton />}>
         <AdditionalInfo coords={coords} />
       </Suspense>
-      <SidePanel coords={coords} />
+      <SidePanel coords={coords} isOpenedSidePanel={isOpenedSidePanel} setSidePanel={setSidePanel} />
     </main>
   )
 }
