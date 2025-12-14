@@ -14,11 +14,11 @@ const SidePanel = (props) => {
     return (
         <div
             className={clsx(
-                `h-screen w-80 fixed top-0 right-0 z-1001 bg-sidebar overflow-y-scroll p-4 transition-transform duration-300`,
+                `h-screen w-80 fixed top-0 right-0 z-1001 bg-sidebar overflow-y-scroll p-4 transition-transform duration-300 lg:block lg:translate-x-0`,
                 isOpenedSidePanel ? "translate-x-0" : "translate-x-full"
             )}
         >
-            <Chevron className="size-8 -ml-2 invert" onClick={() => setSidePanel(false)} />
+            <Chevron className="size-8 -ml-2 invert lg:hidden" onClick={() => setSidePanel(false)} />
             <Suspense fallback={<SidePanelSkeleton />}>
                 <AirPollution {...props} />
             </Suspense>

@@ -36,34 +36,36 @@ const App = () => {
   }
 
   return (
-    <main className="flex flex-col gap-8 w-full p-6">
-      <div className="sm:hidden">
-        <MobileHeader setSidePanel={setSidePanel} />
-      </div>
-      <div className="flex flex-col gap-4 sm:items-center sm:flex-row">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <span className="text-lg font-medium min-w-fit md:text-xl sm:text-center">Location</span>
-          <LocationDropDown location={location} setLocation={setLocation} />
+    <main className="w-full flex gap-8">
+      <div className="flex flex-col gap-8 w-full lg:w-[calc(100%-320px)] p-6">
+        <div className="sm:hidden">
+          <MobileHeader setSidePanel={setSidePanel} />
         </div>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <span className="text-lg font-medium min-w-fit md:text-xl sm:text-center">Map Type</span>
-          <MapTypeDropDown mapType={mapType} setMapType={setMapType} />
+        <div className="flex flex-col gap-4 sm:items-center sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <span className="text-lg font-medium min-w-fit md:text-xl sm:text-center">Location</span>
+            <LocationDropDown location={location} setLocation={setLocation} />
+          </div>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <span className="text-lg font-medium min-w-fit md:text-xl sm:text-center">Map Type</span>
+            <MapTypeDropDown mapType={mapType} setMapType={setMapType} />
+          </div>
+          <Menu className="size-8 invert max-sm:hidden ml-auto lg:hidden" onClick={() => setSidePanel(true)} />
         </div>
-        <Menu className="size-8 invert max-sm:hidden ml-auto" onClick={() => setSidePanel(true)} />
+        <Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} />
+        <Suspense fallback={<CurrentSkeleton />}>
+          <CurrentWeather coords={coords} />
+        </Suspense>
+        <Suspense fallback={<HourlySkeleton />}>
+          <HourlyForecast coords={coords} />
+        </Suspense>
+        <Suspense fallback={<DailySkeleton />}>
+          <DailyForecast coords={coords} />
+        </Suspense>
+        <Suspense fallback={<AddtionalSkeleton />}>
+          <AdditionalInfo coords={coords} />
+        </Suspense>
       </div>
-      <Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} />
-      <Suspense fallback={<CurrentSkeleton />}>
-        <CurrentWeather coords={coords} />
-      </Suspense>
-      <Suspense fallback={<HourlySkeleton />}>
-        <HourlyForecast coords={coords} />
-      </Suspense>
-      <Suspense fallback={<DailySkeleton />}>
-        <DailyForecast coords={coords} />
-      </Suspense>
-      <Suspense fallback={<AddtionalSkeleton />}>
-        <AdditionalInfo coords={coords} />
-      </Suspense>
       <SidePanel coords={coords} isOpenedSidePanel={isOpenedSidePanel} setSidePanel={setSidePanel} />
     </main>
   )
