@@ -14,7 +14,8 @@ const Map = ({ coords, handleMapClick, mapType }) => {
             // key={`${coords.lat},${coords.lon}`}
             center={[lat, lon]}
             zoom={5}
-            style={{ width: "100wv", height: "500px" }}
+            className='h-[500px] 2xl:h-[380px]'
+            style={{ width: "100%" }}
         >
             <MapLegend mapType={mapType} />
             <ClickMap handleMapClick={handleMapClick} coords={coords} />

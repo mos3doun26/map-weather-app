@@ -9,7 +9,7 @@ const CurrentWeather = ({ coords }) => {
     })
 
     return (
-        <Card title="Current Weather" className="flex flex-col gap-6 items-center justify-center overflow-hidden">
+        <Card title="Current Weather" className="flex flex-col gap-7 items-center justify-center overflow-hidden pt-1">
             <span className="text-5xl font-medium">{Math.round(data?.current.temp)}°F</span>
             <img className="size-18" src={` https://openweathermap.org/img/wn/${data?.current.weather[0].icon}.png`} />
             <span className="capitalize text-xl">{data?.current.weather[0].description}</span>

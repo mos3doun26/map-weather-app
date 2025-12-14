@@ -9,11 +9,11 @@ const HourlyForecast = ({ coords }) => {
     })
 
     return (
-        <Card title="Hourly Forecast (48 Hours)" className="pt-4">
+        <Card title="Hourly Forecast (48 Hours)" className="pt-3">
             <div className="w-full flex gap-2 overflow-x-scroll">
                 {
                     data?.hourly.map((hour, index) =>
-                        <div key={index} className="min-w-20 flex flex-col items-center gap-2">
+                        <div key={index} className="min-w-20 flex flex-col items-center gap-4">
                             <span>
                                 {
                                     hour?.dt ?
@@ -26,7 +26,7 @@ const HourlyForecast = ({ coords }) => {
                                         : "N/A"
                                 }
                             </span>
-                            <img src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`} />
+                            <img className="size-12" src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`} />
                             <span>{Math.round(hour.temp)}°F</span>
                         </div>
                     )

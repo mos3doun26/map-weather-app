@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <main className="w-full flex gap-8">
-      <div className="flex flex-col gap-8 w-full lg:w-[calc(100%-320px)] p-6">
+      <div className="flex flex-col gap-6 w-full lg:w-[calc(100%-320px)] p-6 pb-0">
 
         <div>
           <div className="sm:hidden">
@@ -56,25 +56,27 @@ const App = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} />
+        </div>
 
-          <div className="md:col-span-2"><Map coords={coords} handleMapClick={handleMapClick} mapType={mapType} /></div>
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-2">
+          <div className="md:col-span-1 2xl:col-span-1 2xl:row-span-2">
             <Suspense fallback={<CurrentSkeleton />}>
               <CurrentWeather coords={coords} />
             </Suspense>
           </div>
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 2xl:col-span-1 2xl:row-span-2 2xl:order-4">
             <Suspense fallback={<DailySkeleton />}>
               <DailyForecast coords={coords} />
             </Suspense>
           </div>
-          <div className="col-span-2">
+          <div className="md:col-span-2 2xl:order-2 2xl:row-span-1 2xl:col-span-2">
             <Suspense fallback={<HourlySkeleton />}>
               <HourlyForecast coords={coords} />
             </Suspense>
           </div>
-          <div className="col-span-2">
+          <div className="md:col-span-2 2xl:order-3 2xl:row-span-1 2xl:col-span-2 2xl:col-start-2 2xl:row-start-2">
             <Suspense fallback={<AddtionalSkeleton />}>
               <AdditionalInfo coords={coords} />
             </Suspense>

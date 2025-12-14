@@ -3,7 +3,7 @@ import Card from "../cards/Card"
 
 const CurrentSkeleton = () => {
     return (
-        <Card title="Current Weather" className="flex flex-col gap-6 items-center justify-center overflow-hidden">
+        <Card title="Current Weather" className="flex flex-col gap-7 items-center justify-center overflow-hidden pt-1">
             <Skeleton className="w-24 h-12" />
             <Skeleton className="size-18 rounded-full" />
             <Skeleton className="w-20 h-7" />
