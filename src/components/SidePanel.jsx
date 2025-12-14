@@ -79,7 +79,7 @@ function AirPollution({ coords }) {
                     })
 
                     return (
-                        <div key={key} className="rounded-lg bg-linear-to-tr from-sidebar to-sidebar-accent p-2 flex flex-col gap-2">
+                        <div key={key} className="rounded-lg bg-linear-to-tr from-sidebar to-sidebar-accent p-2 flex flex-col gap-2 animate-[fade-in_2s_ease-in-out_forwards]">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <span className="capitalize font-medium text-lg">{key}</span>
