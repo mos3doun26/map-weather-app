@@ -29,7 +29,7 @@ const AdditionalInfo = ({ coords }) => {
         }
 
         if (value === "wind_deg") {
-            return <ArrowUp className="size-8 invert" style={{ transform: `rotate(${number}deg)` }} />
+            return <ArrowUp className="size-8 " style={{ transform: `rotate(${number}deg)` }} />
         }
 
         return number
@@ -44,7 +44,7 @@ const AdditionalInfo = ({ coords }) => {
                         <div key={index} className="flex justify-between items-center">
                             <div className="flex gap-2 items-center">
                                 <span className="text-lg text-zinc-500 font-medium">{label}</span>
-                                <Icon className="size-9 invert" />
+                                <Icon className="size-9 " />
                             </div>
                             <span>
                                 <FormatedComponent value={value} number={data?.current[value]} />

@@ -11,7 +11,7 @@ import {
 const LocationDropDown = ({ location, setLocation }) => {
     return (
         <Select value={location} onValueChange={(value) => setLocation(value)} >
-            <SelectTrigger className="w-full md:w-60">
+            <SelectTrigger className="w-full md:w-55">
                 <SelectValue placeholder="Choose city" />
             </SelectTrigger>
             <SelectContent className="z-1001">

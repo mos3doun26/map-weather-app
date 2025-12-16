@@ -15,6 +15,7 @@ import AddtionalSkeleton from "./components/skeletons/AddtionalSkeleton"
 import SidePanel from "./components/SidePanel"
 import Menu from "/src/assets/menu.svg?react"
 import MobileHeader from "./components/MobileHeader"
+import DarkLightModeToggle from "./components/DarkLightModeToggle"
 
 
 const App = () => {
@@ -52,7 +53,10 @@ const App = () => {
               <span className="text-lg font-medium min-w-fit md:text-xl sm:text-center">Map Type</span>
               <MapTypeDropDown mapType={mapType} setMapType={setMapType} />
             </div>
-            <Menu className="size-8 invert max-sm:hidden ml-auto lg:hidden" onClick={() => setSidePanel(true)} />
+            <div className="flex items-center gap-2">
+              <DarkLightModeToggle />
+              <Menu className="size-8 max-sm:hidden ml-auto lg:hidden" onClick={() => setSidePanel(true)} />
+            </div>
           </div>
         </div>
 

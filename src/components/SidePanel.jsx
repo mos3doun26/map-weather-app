@@ -18,7 +18,7 @@ const SidePanel = (props) => {
                 isOpenedSidePanel ? "translate-x-0" : "translate-x-full"
             )}
         >
-            <Chevron className="size-8 -ml-2 invert lg:hidden" onClick={() => setSidePanel(false)} />
+            <Chevron className="size-8 -ml-2 lg:hidden" onClick={() => setSidePanel(false)} />
             <Suspense fallback={<SidePanelSkeleton />}>
                 <AirPollution {...props} />
             </Suspense>
@@ -42,7 +42,7 @@ function AirPollution({ coords }) {
                 <span className="text-2xl font-bold">AQI</span>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Info className="size-4 invert" />
+                        <Info className="size-4" />
                     </TooltipTrigger>
                     <TooltipContent className="z-1500">
                         <p className="max-w-xs">
@@ -85,7 +85,7 @@ function AirPollution({ coords }) {
                                     <span className="capitalize font-medium text-lg">{key}</span>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <Info className="size-4 invert" />
+                                            <Info className="size-4 " />
                                         </TooltipTrigger>
                                         <TooltipContent className="z-1500">
                                             <p className="max-w-xs">{pollutantNames[key]}</p>

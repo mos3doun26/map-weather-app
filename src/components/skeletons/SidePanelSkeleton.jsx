@@ -11,7 +11,7 @@ const SidePanelSkeleton = () => {
                 <span className="text-2xl font-bold">AQI</span>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Info className="size-4 invert" />
+                        <Info className="size-4 " />
                     </TooltipTrigger>
                     <TooltipContent className="z-1500">
                         <p className="max-w-xs">

@@ -11,7 +11,7 @@ import {
 const MapTypeDropDown = ({ mapType, setMapType }) => {
     return (
         <Select value={mapType} onValueChange={(value) => setMapType(value)}>
-            <SelectTrigger className="w-full md:w-60">
+            <SelectTrigger className="w-full md:w-55">
                 <SelectValue placeholder="Map Type" />
             </SelectTrigger>
             <SelectContent className="z-1001">
