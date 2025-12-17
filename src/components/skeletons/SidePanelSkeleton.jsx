@@ -6,7 +6,7 @@ const SidePanelSkeleton = () => {
     return (
         <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-medium">Air Pollution</h2>
-            <Skeleton className="h-9 w-12" />
+            <Skeleton className="bg-sidebar-primary h-9 w-12" />
             <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold">AQI</span>
                 <Tooltip>
@@ -24,7 +24,7 @@ const SidePanelSkeleton = () => {
                 {
                     Array.from({ length: 8 }).map((_, index) => {
                         return (
-                            <Skeleton key={index} className="h-30.5 w-68 bg-linear-to-tr from-sidebar to-sidebar-accent" />
+                            <Skeleton key={index} className="h-30.5 w-68 bg-linear-to-tr dark:from-sidebar from-sidebar-primary to-sidebar-accent" />
                         )
                     })
                 }
